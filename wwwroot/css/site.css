@@ -766,6 +766,68 @@ section {
   margin-top: 24px;
 }
 
+.install-command {
+  margin: 24px 0;
+  width: 100%;
+}
+
+.command-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.command-box {
+  background: #1E1E1E;
+  padding: 16px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.command-box code {
+  flex: 1;
+  color: #D4D4D4;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  word-break: break-all;
+  background: none;
+  padding: 0;
+}
+
+.copy-btn {
+  background: var(--primary-blue);
+  border: none;
+  padding: 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  flex-shrink: 0;
+  color: var(--white);
+}
+
+.copy-btn:hover {
+  background: var(--primary-blue-hover);
+  transform: scale(1.05);
+}
+
+.copy-btn.copied {
+  background: #10B981;
+}
+
+.copy-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
 .install-instructions-section {
   background: var(--secondary-gray);
   padding: 80px 24px;
@@ -782,6 +844,26 @@ section {
   color: var(--text-primary);
   text-align: center;
   margin-bottom: 48px;
+}
+
+.platform-instructions {
+  margin-bottom: 64px;
+}
+
+.platform-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 3px solid var(--primary-blue);
+}
+
+.platform-title svg {
+  color: var(--primary-blue);
 }
 
 .install-container .setup-option h3 {

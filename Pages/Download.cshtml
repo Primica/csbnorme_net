@@ -38,7 +38,7 @@
                     <p class="file-info">csbnorm-windows-amd64.exe • ~5 MB</p>
                 </div>
 
-                <div class="download-card disabled">
+                <div class="download-card">
                     <div class="download-icon">
                         <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="10"></circle>
@@ -48,11 +48,20 @@
                         </svg>
                     </div>
                     <h2>Linux</h2>
-                    <p class="version">Bientôt disponible</p>
-                    <button class="btn-download" disabled>
-                        Prochainement
-                    </button>
-                    <p class="file-info">Version en développement</p>
+                    <p class="version">Version 1.0.0</p>
+                    <div class="install-command">
+                        <p class="command-label">Installation en une commande :</p>
+                        <div class="command-box">
+                            <code id="linux-install-cmd">curl -L http://localhost:5093/downloads/csbnorm-linux-amd64 -o csbnorm && chmod +x csbnorm && sudo ./csbnorm install</code>
+                            <button class="copy-btn" onclick="copyToClipboard('linux-install-cmd')" title="Copier">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="file-info">csbnorm-linux-amd64 • ~5 MB</p>
                 </div>
 
                 <div class="download-card disabled">
@@ -77,73 +86,122 @@
     <!-- Installation Instructions -->
     <section class="install-instructions-section">
         <div class="install-container">
-            <h2>Instructions d'installation pour Windows</h2>
+            <h2>Instructions d'installation</h2>
             
-            <div class="setup-steps">
+            <!-- Linux Installation -->
+            <div class="platform-instructions">
+                <h3 class="platform-title">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                    </svg>
+                    Linux
+                </h3>
+                
                 <div class="setup-option">
-                    <h3><span class="option-number">Option 1</span> Ajouter au PATH (Recommandé)</h3>
-                    <p>Permet d'utiliser <code>csbnorm</code> depuis n'importe quel dossier.</p>
-                    
-                    <div class="setup-instructions">
-                        <div class="instruction-step">
-                            <div class="step-label">1</div>
-                            <div class="step-content">
-                                <p><strong>Créer un dossier pour les binaires</strong></p>
-                                <div class="code-example">
-                                    <pre><code># PowerShell
-New-Item -ItemType Directory -Path "C:\Tools" -Force
-Move-Item csbnorm-windows-amd64.exe C:\Tools\csbnorm.exe</code></pre>
-                                </div>
-                            </div>
-                        </div>
+                    <h4><span class="option-number">Installation rapide</span> Via curl (Recommandé)</h4>
+                    <p>Une seule commande pour télécharger et installer CSBNorm.</p>
+                    <div class="code-example">
+                        <pre><code># Télécharger et installer automatiquement
+curl -L https://votre-domaine.com/downloads/csbnorm-linux-amd64 -o csbnorm
+chmod +x csbnorm
+sudo ./csbnorm install
 
-                        <div class="instruction-step">
-                            <div class="step-label">2</div>
-                            <div class="step-content">
-                                <p><strong>Ajouter au PATH système</strong></p>
-                                <div class="code-example">
-                                    <pre><code># PowerShell (en tant qu'Administrateur)
-$path = [Environment]::GetEnvironmentVariable("Path", "Machine")
-$newPath = $path + ";C:\Tools"
-[Environment]::SetEnvironmentVariable("Path", $newPath, "Machine")</code></pre>
-                                </div>
-                                <p class="note">Ou manuellement : <em>Paramètres système > Variables d'environnement > Path > Modifier > Nouveau > C:\Tools</em></p>
-                            </div>
-                        </div>
-
-                        <div class="instruction-step">
-                            <div class="step-label">3</div>
-                            <div class="step-content">
-                                <p><strong>Vérifier l'installation</strong></p>
-                                <div class="code-example">
-                                    <pre><code># Redémarrer PowerShell puis :
+# Vérifier l'installation
 csbnorm --version</code></pre>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                    <p class="note">La commande <code>install</code> copie automatiquement le binaire dans <code>/usr/local/bin</code> et le rend accessible globalement.</p>
+                </div>
+
+                <div class="setup-option">
+                    <h4><span class="option-number">Installation manuelle</span> Sans sudo</h4>
+                    <p>Installer dans votre répertoire utilisateur.</p>
+                    <div class="code-example">
+                        <pre><code># Télécharger
+curl -L https://votre-domaine.com/downloads/csbnorm-linux-amd64 -o csbnorm
+chmod +x csbnorm
+
+# Déplacer vers un dossier local
+mkdir -p ~/.local/bin
+mv csbnorm ~/.local/bin/
+
+# Ajouter au PATH (ajouter à ~/.bashrc ou ~/.zshrc)
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc</code></pre>
                     </div>
                 </div>
 
                 <div class="setup-option">
-                    <h3><span class="option-number">Option 2</span> Utilisation locale</h3>
-                    <p>Utiliser directement dans le dossier du projet sans modifier le PATH.</p>
+                    <h4><span class="option-number">Utilisation locale</span> Sans installation</h4>
+                    <p>Utiliser directement dans le dossier courant.</p>
                     <div class="code-example">
-                        <pre><code># Placer le binaire dans votre projet
-.\csbnorm-windows-amd64.exe check .
+                        <pre><code># Télécharger
+wget https://votre-domaine.com/downloads/csbnorm-linux-amd64 -O csbnorm
+chmod +x csbnorm
 
-# Ou créer un alias dans votre session PowerShell
-Set-Alias csbnorm "C:\chemin\vers\csbnorm-windows-amd64.exe"</code></pre>
+# Utiliser
+./csbnorm check mon-projet/</code></pre>
                     </div>
+                </div>
+            </div>
+
+            <!-- Windows Installation -->
+            <div class="platform-instructions">
+                <h3 class="platform-title">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    </svg>
+                    Windows
+                </h3>
+                
+                <div class="setup-option">
+                    <h4><span class="option-number">Installation rapide</span> Via PowerShell (Recommandé)</h4>
+                    <p>Téléchargez le binaire, puis utilisez la commande d'auto-installation.</p>
+                    <div class="code-example">
+                        <pre><code># PowerShell (en tant qu'Administrateur)
+# Télécharger le binaire
+Invoke-WebRequest -Uri "http://localhost:5093/downloads/csbnorm-windows-amd64.exe" -OutFile "csbnorm.exe"
+
+# Installer automatiquement dans le PATH
+.\csbnorm.exe install
+
+# Vérifier l'installation
+csbnorm --version</code></pre>
+                    </div>
+                    <p class="note">La commande <code>install</code> copie automatiquement le binaire dans <code>C:\Program Files\CSBNorm</code> et l'ajoute au PATH système.</p>
                 </div>
 
                 <div class="setup-option">
-                    <h3><span class="option-number">Option 3</span> PATH utilisateur uniquement</h3>
-                    <p>Ajouter au PATH de votre utilisateur (pas besoin de droits admin).</p>
+                    <h4><span class="option-number">Installation manuelle</span> Sans droits admin</h4>
+                    <p>Installer dans votre répertoire utilisateur.</p>
                     <div class="code-example">
-                        <pre><code># PowerShell (sans admin)
+                        <pre><code># PowerShell
+# Créer un dossier local
+New-Item -ItemType Directory -Path "$env:USERPROFILE\.local\bin" -Force
+
+# Déplacer le binaire
+Move-Item csbnorm-windows-amd64.exe "$env:USERPROFILE\.local\bin\csbnorm.exe"
+
+# Ajouter au PATH utilisateur
 $userPath = [Environment]::GetEnvironmentVariable("Path", "User")
-$newUserPath = $userPath + ";C:\Tools"
-[Environment]::SetEnvironmentVariable("Path", $newUserPath, "User")</code></pre>
+$newPath = "$env:USERPROFILE\.local\bin;$userPath"
+[Environment]::SetEnvironmentVariable("Path", $newPath, "User")
+
+# Redémarrer PowerShell puis :
+csbnorm --version</code></pre>
+                    </div>
+                </div>
+
+                <div class="setup-option">
+                    <h4><span class="option-number">Utilisation locale</span> Sans installation</h4>
+                    <p>Utiliser directement dans le dossier courant sans modifier le PATH.</p>
+                    <div class="code-example">
+                        <pre><code># PowerShell
+# Utiliser directement
+.\csbnorm-windows-amd64.exe check mon-projet/
+
+# Ou renommer pour simplifier
+Rename-Item csbnorm-windows-amd64.exe csbnorm.exe
+.\csbnorm.exe check mon-projet/</code></pre>
                     </div>
                 </div>
             </div>
@@ -183,3 +241,25 @@ csbnorm --help</code></pre>
         </div>
     </section>
 </div>
+
+<script>
+function copyToClipboard(elementId) {
+    const element = document.getElementById(elementId);
+    const text = element.textContent;
+    
+    navigator.clipboard.writeText(text).then(() => {
+        // Feedback visuel
+        const button = event.target.closest('.copy-btn');
+        const originalHTML = button.innerHTML;
+        button.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+        button.classList.add('copied');
+        
+        setTimeout(() => {
+            button.innerHTML = originalHTML;
+            button.classList.remove('copied');
+        }, 2000);
+    }).catch(err => {
+        console.error('Erreur lors de la copie:', err);
+    });
+}
+</script>
