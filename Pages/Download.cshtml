@@ -27,14 +27,18 @@
                     </div>
                     <h2>Windows</h2>
                     <p class="version">Version 1.0.0</p>
-                    <a href="/downloads/csbnorm-windows-amd64.exe" class="btn-download" download>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="7 10 12 15 17 10"></polyline>
-                            <line x1="12" y1="15" x2="12" y2="3"></line>
-                        </svg>
-                        Télécharger pour Windows
-                    </a>
+                    <div class="install-command">
+                        <p class="command-label">Installation en une commande :</p>
+                        <div class="command-box">
+                            <code id="windows-install-cmd">Invoke-WebRequest -Uri "http://localhost:5093/downloads/csbnorm-windows-amd64.exe" -OutFile "csbnorm.exe"; .\csbnorm.exe install</code>
+                            <button class="copy-btn" onclick="copyToClipboard('windows-install-cmd')" title="Copier">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                     <p class="file-info">csbnorm-windows-amd64.exe • ~5 MB</p>
                 </div>
 
