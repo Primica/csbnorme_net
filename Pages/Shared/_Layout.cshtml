@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <meta name="description" content="CSBNorm - Norminette PHP MVC type 42 pour vérifier la qualité et la sécurité de vos projets PHP sans framework" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <div class="nav-content">
+                <a class="brand" asp-area="" asp-page="/Index">
+                    <span class="brand-icon">⚡</span>
+                    <span class="brand-text">CSBNorm</span>
+                </a>
+                <button class="mobile-toggle" type="button" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="nav-menu">
+                    <a class="nav-link" asp-area="" asp-page="/Index">Accueil</a>
+                    <a class="nav-link" asp-area="" asp-page="/Rules">Règles</a>
+                    <a class="nav-link" href="https://github.com" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>CSBNorm</h4>
+                <p>Norminette PHP MVC professionnelle</p>
+            </div>
+            <div class="footer-section">
+                <h4>Ressources</h4>
+                <ul>
+                    <li><a asp-page="/Index">Accueil</a></li>
+                    <li><a asp-page="/Rules">Documentation</a></li>
+                    <li><a href="https://github.com" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Liens</h4>
+                <ul>
+                    <li><a href="https://www.php.net" target="_blank">PHP.net</a></li>
+                    <li><a href="https://www.php-fig.org" target="_blank">PHP-FIG (PSR)</a></li>
+                    <li><a href="https://owasp.org" target="_blank">OWASP</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>&copy; 2026 CSBNorm</p>
+                <p>Inspiré par la norminette 42</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Développé avec ❤️ pour la communauté PHP</p>
+        </div>
+    </footer>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

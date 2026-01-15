@@ -1,0 +1,392 @@
+@page
+@model csbnorme_net.Pages.RulesModel
+@{
+    ViewData["Title"] = "Règles - CSBNorm";
+}
+
+<div class="rules-page">
+    <div class="rules-hero">
+        <h1>Règles CSBNorm</h1>
+        <p>Standards complets pour le développement PHP MVC sans framework</p>
+    </div>
+
+    <div class="rules-container">
+        <!-- Navigation -->
+        <nav class="rules-nav">
+            <h3>Catégories</h3>
+            <ul>
+                <li><a href="#structure">Structure MVC</a></li>
+                <li><a href="#database">Base de données</a></li>
+                <li><a href="#config">Configuration</a></li>
+                <li><a href="#auth">Sessions & Auth</a></li>
+                <li><a href="#forms">Formulaires</a></li>
+                <li><a href="#templates">Templates/Vues</a></li>
+                <li><a href="#autoloading">Autoloading</a></li>
+                <li><a href="#helpers">Helpers</a></li>
+                <li><a href="#git">Git & Versioning</a></li>
+                <li><a href="#performance">Performance</a></li>
+                <li><a href="#logs">Logs & Monitoring</a></li>
+                <li><a href="#security">Sécurité</a></li>
+                <li><a href="#api">API</a></li>
+                <li><a href="#comments">Commentaires</a></li>
+                <li><a href="#accessibility">Accessibilité</a></li>
+            </ul>
+        </nav>
+
+        <!-- Content -->
+        <div class="rules-content">
+            <!-- Structure MVC -->
+            <section id="structure" class="rule-section">
+                <h2>📁 Structure MVC</h2>
+                <div class="rule-card">
+                    <h4>Structure de dossiers obligatoire</h4>
+                    <p>Organisation stricte du projet avec séparation claire des responsabilités.</p>
+                    <pre><code>/public         # Point d'entrée web
+/app
+  /controllers  # Contrôleurs
+  /models      # Modèles
+  /views       # Vues
+/config        # Configuration
+/core          # Classes système
+/database      # Migrations
+/helpers       # Fonctions utilitaires</code></pre>
+                </div>
+                <div class="rule-card">
+                    <h4>Point d'entrée unique</h4>
+                    <p>Tout le trafic passe par <code>/public/index.php</code> (front controller pattern).</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Classe Router</h4>
+                    <p>Gestion centralisée des routes avec méthodes <code>get()</code>, <code>post()</code>, <code>put()</code>, <code>delete()</code>.</p>
+                </div>
+            </section>
+
+            <!-- Base de données -->
+            <section id="database" class="rule-section">
+                <h2>🗄️ Base de données</h2>
+                <div class="rule-card">
+                    <h4>Migrations obligatoires</h4>
+                    <p>Toute modification de schéma doit passer par un fichier de migration versionné dans <code>/database/migrations/</code> avec timestamp.</p>
+                    <pre><code>2024_01_15_create_users_table.sql</code></pre>
+                </div>
+                <div class="rule-card">
+                    <h4>Nommage des tables</h4>
+                    <p>Convention snake_case au pluriel : <code>users</code>, <code>blog_posts</code>, <code>article_categories</code>.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Clés étrangères</h4>
+                    <p>Obligation de définir les relations avec contraintes <code>ON DELETE</code> et <code>ON UPDATE</code> explicites.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Indexation</h4>
+                    <p>Les colonnes utilisées dans les <code>WHERE</code>, <code>JOIN</code> et <code>ORDER BY</code> fréquents doivent avoir des index.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Classe Database Singleton</h4>
+                    <p>Connexion PDO unique, pas de connexions multiples dispersées dans le code.</p>
+                </div>
+            </section>
+
+            <!-- Configuration -->
+            <section id="config" class="rule-section">
+                <h2>⚙️ Configuration</h2>
+                <div class="rule-card">
+                    <h4>Variables d'environnement</h4>
+                    <p>Interdiction de credentials en dur. Utilisation obligatoire d'un fichier <code>config.php</code> avec <code>config.example.php</code> versionné.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Configuration centralisée</h4>
+                    <p>Un seul point d'entrée : <code>/config/config.php</code>. Pas de valeurs dispersées.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Modes environnement</h4>
+                    <p>Distinction claire dev/staging/production avec constantes : <code>define('ENV', 'development')</code>.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Constantes pour paths</h4>
+                    <p>Définir : <code>ROOT_PATH</code>, <code>PUBLIC_PATH</code>, <code>UPLOADS_PATH</code>.</p>
+                </div>
+            </section>
+
+            <!-- Authentification -->
+            <section id="auth" class="rule-section">
+                <h2>🔐 Sessions & Authentification</h2>
+                <div class="rule-card">
+                    <h4>Régénération de session</h4>
+                    <p><code>session_regenerate_id(true)</code> après connexion/changement de privilège.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Hashage des mots de passe</h4>
+                    <p>Utilisation obligatoire de <code>password_hash()</code> et <code>password_verify()</code>. Jamais MD5 ou SHA1.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Durée de session</h4>
+                    <p>Timeout défini avec <code>session.gc_maxlifetime</code> et vérification manuelle de l'expiration.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Protection des routes</h4>
+                    <p>Middleware/vérification systématique de l'authentification sur les routes protégées.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Configuration sécurisée</h4>
+                    <p><code>session_start()</code> avec options : <code>httponly</code>, <code>secure</code> si HTTPS, <code>samesite</code>.</p>
+                </div>
+            </section>
+
+            <!-- Formulaires -->
+            <section id="forms" class="rule-section">
+                <h2>📋 Formulaires</h2>
+                <div class="rule-card">
+                    <h4>Token CSRF</h4>
+                    <p>Présence obligatoire sur tous les formulaires POST/PUT/DELETE (implémentation manuelle via session).</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Validation côté serveur</h4>
+                    <p>Jamais de confiance dans la validation JavaScript uniquement.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Messages flash</h4>
+                    <p>Système cohérent pour succès/erreur (stockage en session avec suppression après affichage).</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Sanitisation</h4>
+                    <p><code>trim()</code> sur toutes les entrées texte, validation avec <code>filter_var()</code> pour email, URL, etc.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Validation centralisée</h4>
+                    <p>Classe <code>Validator</code> personnalisée avec méthodes réutilisables.</p>
+                </div>
+            </section>
+
+            <!-- Templates -->
+            <section id="templates" class="rule-section">
+                <h2>🎨 Templates/Vues</h2>
+                <div class="rule-card">
+                    <h4>Échappement par défaut</h4>
+                    <p>Toute variable affichée doit passer par : <code>escape()</code> définie comme <code>htmlspecialchars($var, ENT_QUOTES, 'UTF-8')</code>.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Syntaxe courte</h4>
+                    <p>Privilégier <code>&lt;?= escape($var) ?&gt;</code> au lieu de <code>&lt;?php echo ... ?&gt;</code>.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Layout principal</h4>
+                    <p>Template de base avec système d'inclusion (header/footer communs via <code>include</code>).</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Assets versionnés</h4>
+                    <p>Cache busting : <code>style.css?v=&lt;?= APP_VERSION ?&gt;</code>.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Pas de logique complexe</h4>
+                    <p>Maximum 3 niveaux d'imbrication de boucles/conditions dans les vues.</p>
+                </div>
+            </section>
+
+            <!-- Autoloading -->
+            <section id="autoloading" class="rule-section">
+                <h2>📦 Autoloading</h2>
+                <div class="rule-card">
+                    <h4>Autoloader PSR-4</h4>
+                    <p>Implémentation personnalisée dans <code>/core/Autoloader.php</code> pour charger automatiquement les classes.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Pas de require/include dispersés</h4>
+                    <p>Interdiction de <code>require_once</code> dans le code sauf pour l'autoloader et les vues.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Convention de nommage stricte</h4>
+                    <p>Namespace = structure de dossiers, nom de classe = nom de fichier.</p>
+                </div>
+            </section>
+
+            <!-- Helpers -->
+            <section id="helpers" class="rule-section">
+                <h2>🛠️ Helpers et Utilities</h2>
+                <div class="rule-card">
+                    <h4>Dossier /helpers</h4>
+                    <p>Fonctions utilitaires regroupées par thème : <code>security.php</code>, <code>validation.php</code>, <code>string.php</code>, <code>date.php</code>.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Fonctions pures</h4>
+                    <p>Les helpers doivent être sans effet de bord et réutilisables.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Documentation complète</h4>
+                    <p>Chaque fonction helper doit avoir un docblock avec exemples d'utilisation.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Pas de code dupliqué</h4>
+                    <p>Toute logique répétée 3 fois doit devenir un helper.</p>
+                </div>
+            </section>
+
+            <!-- Git -->
+            <section id="git" class="rule-section">
+                <h2>📦 Git et Versioning</h2>
+                <div class="rule-card">
+                    <h4>Fichiers exclus</h4>
+                    <p><code>.gitignore</code> doit contenir : <code>.env</code>, <code>config.php</code>, <code>/uploads</code>, <code>/cache</code>, <code>/logs</code>, fichiers IDE.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Messages de commit</h4>
+                    <p>Format conventionnel : <code>feat:</code>, <code>fix:</code>, <code>refactor:</code>, <code>docs:</code> avec description claire.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Branches</h4>
+                    <p>Convention de nommage : <code>feature/</code>, <code>bugfix/</code>, <code>hotfix/</code>.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Pas de code commenté</h4>
+                    <p>Suppression du code mort au lieu de le commenter (utiliser Git pour l'historique).</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Fichiers d'exemple</h4>
+                    <p><code>config.example.php</code>, <code>database.example.php</code> versionnés pour faciliter l'installation.</p>
+                </div>
+            </section>
+
+            <!-- Performance -->
+            <section id="performance" class="rule-section">
+                <h2>⚡ Performance</h2>
+                <div class="rule-card">
+                    <h4>Lazy loading</h4>
+                    <p>Chargement des relations uniquement quand nécessaire (méthodes séparées dans les modèles).</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Pagination obligatoire</h4>
+                    <p>Toute liste de plus de 20 éléments doit être paginée.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Cache manuel</h4>
+                    <p>Pour données statiques/peu changeantes : fichiers cache en JSON ou sérialisation PHP.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Limitation des requêtes N+1</h4>
+                    <p>Utilisation de jointures SQL ou chargement anticipé manuel.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Cache de vues</h4>
+                    <p>Système optionnel de mise en cache (output buffering + stockage fichier).</p>
+                </div>
+            </section>
+
+            <!-- Logs -->
+            <section id="logs" class="rule-section">
+                <h2>📊 Logs et Monitoring</h2>
+                <div class="rule-card">
+                    <h4>Logs manuels</h4>
+                    <p>Classe <code>Logger</code> personnalisée écrivant dans <code>/logs/</code> avec rotation quotidienne.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Niveaux de logs</h4>
+                    <p>Constantes définies : <code>DEBUG</code>, <code>INFO</code>, <code>WARNING</code>, <code>ERROR</code>, <code>CRITICAL</code>.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Pas d'informations sensibles</h4>
+                    <p>Jamais de mots de passe, tokens, données personnelles dans les logs.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Log des actions critiques</h4>
+                    <p>Connexions, modifications de données sensibles, erreurs d'authentification.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Format structuré</h4>
+                    <p><code>[2024-01-15 14:30:45] [ERROR] Message - Context: {...}</code>.</p>
+                </div>
+            </section>
+
+            <!-- Sécurité -->
+            <section id="security" class="rule-section">
+                <h2>🔒 Sécurité Renforcée</h2>
+                <div class="rule-card">
+                    <h4>Validation des uploads</h4>
+                    <p>Vérification du type MIME réel avec <code>finfo_file()</code>, pas seulement l'extension.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Limitation de taille</h4>
+                    <p>Vérification de <code>$_FILES['file']['size']</code> avant traitement.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Noms de fichiers sécurisés</h4>
+                    <p>Génération de noms aléatoires ou sanitisation stricte (<code>preg_replace</code>).</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Protection XSS</h4>
+                    <p>Fonction <code>escape()</code> utilisée systématiquement dans les vues.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Protection SQL Injection</h4>
+                    <p>Requêtes préparées obligatoires, jamais de concaténation de variables dans SQL.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>En-têtes de sécurité</h4>
+                    <p>Headers HTTP : <code>X-Frame-Options</code>, <code>X-Content-Type-Options</code>, <code>X-XSS-Protection</code>.</p>
+                </div>
+            </section>
+
+            <!-- API -->
+            <section id="api" class="rule-section">
+                <h2>🌐 API (si applicable)</h2>
+                <div class="rule-card">
+                    <h4>Content-Type</h4>
+                    <p>Header correct <code>application/json</code> pour les réponses JSON.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Codes HTTP appropriés</h4>
+                    <p>200 (success), 201 (created), 400 (bad request), 401 (unauthorized), 404 (not found), 500 (server error).</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Format de réponse cohérent</h4>
+                    <p>Structure uniforme : <code>{success: bool, data: {}, message: string, errors: []}</code>.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Classe Response</h4>
+                    <p>Helper personnalisé pour formater les réponses JSON de manière cohérente.</p>
+                </div>
+            </section>
+
+            <!-- Commentaires -->
+            <section id="comments" class="rule-section">
+                <h2>📝 Commentaires</h2>
+                <div class="rule-card">
+                    <h4>Commentaires utiles uniquement</h4>
+                    <p>Expliquer le "pourquoi", pas le "quoi" (le code doit être auto-explicatif).</p>
+                </div>
+                <div class="rule-card">
+                    <h4>TODO avec contexte</h4>
+                    <p>Format : <code>// TODO: Description + raison + date</code>.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Pas de commentaires obsolètes</h4>
+                    <p>Suppression lors de la modification du code concerné.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>PHPDoc obligatoire</h4>
+                    <p>Sur toutes les classes, méthodes publiques et fonctions avec <code>@@param</code>, <code>@@return</code>, <code>@@throws</code>.</p>
+                </div>
+            </section>
+
+            <!-- Accessibilité -->
+            <section id="accessibility" class="rule-section">
+                <h2>♿ Accessibilité</h2>
+                <div class="rule-card">
+                    <h4>Attributs alt</h4>
+                    <p>Obligatoires sur toutes les images.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Structure sémantique</h4>
+                    <p>Utilisation correcte de <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code>.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Labels de formulaires</h4>
+                    <p>Tout input doit avoir un <code>&lt;label&gt;</code> associé avec attribut <code>for</code>.</p>
+                </div>
+                <div class="rule-card">
+                    <h4>Contraste suffisant</h4>
+                    <p>Respect des ratios WCAG AA minimum (4.5:1 pour texte normal).</p>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

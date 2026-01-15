@@ -1,0 +1,135 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "CSBNorm - Norminette PHP MVC";
+}
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">CSBNorm</h1>
+        <p class="hero-subtitle">La norminette type 42 pour projets PHP MVC sans framework</p>
+        <p class="hero-description">
+            Un outil de vérification de code complet pour garantir la qualité, la sécurité et les bonnes pratiques 
+            dans vos projets PHP MVC personnalisés.
+        </p>
+        <div class="hero-buttons">
+            <a href="#features" class="btn-primary-custom">Découvrir les fonctionnalités</a>
+            <a href="/Rules" class="btn-secondary-custom">Voir les règles</a>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="features-section">
+    <div class="section-header">
+        <h2>Pourquoi CSBNorm ?</h2>
+        <p>Des standards stricts pour un code PHP professionnel</p>
+    </div>
+    
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Sécurité renforcée</h3>
+            <p>Protection XSS, CSRF, injection SQL, validation stricte des uploads et hashage sécurisé des mots de passe.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">🗄️</div>
+            <h3>Base de données</h3>
+            <p>Migrations versionnées, indexation obligatoire, contraintes de clés étrangères et nommage cohérent.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Performance</h3>
+            <p>Lazy loading, pagination automatique, cache manuel et élimination des requêtes N+1.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">📝</div>
+            <h3>Code propre</h3>
+            <p>Architecture MVC stricte, autoloader PSR-4, helpers réutilisables et documentation complète.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3>Templates sûrs</h3>
+            <p>Échappement par défaut, séparation logique/présentation, assets versionnés et syntaxe courte.</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">🔐</div>
+            <h3>Authentification</h3>
+            <p>Régénération de session, timeout configurable, protection des routes et configuration sécurisée.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Rules Categories -->
+<section class="categories-section">
+    <div class="section-header">
+        <h2>Catégories de règles</h2>
+        <p>Plus de 100 règles réparties en 15 catégories</p>
+    </div>
+    
+    <div class="categories-grid">
+        <div class="category-card">
+            <h4>📁 Structure MVC</h4>
+            <p>Architecture, routing, autoloading PSR-4</p>
+        </div>
+        <div class="category-card">
+            <h4>🗄️ Base de données</h4>
+            <p>Migrations, indexation, relations</p>
+        </div>
+        <div class="category-card">
+            <h4>⚙️ Configuration</h4>
+            <p>Variables d'environnement, constantes</p>
+        </div>
+        <div class="category-card">
+            <h4>🔐 Authentification</h4>
+            <p>Sessions, hashage, protection</p>
+        </div>
+        <div class="category-card">
+            <h4>📋 Formulaires</h4>
+            <p>CSRF, validation, sanitisation</p>
+        </div>
+        <div class="category-card">
+            <h4>🎨 Templates</h4>
+            <p>Échappement, layouts, assets</p>
+        </div>
+        <div class="category-card">
+            <h4>🛠️ Helpers</h4>
+            <p>Fonctions utilitaires réutilisables</p>
+        </div>
+        <div class="category-card">
+            <h4>📦 Git</h4>
+            <p>Commits, branches, .gitignore</p>
+        </div>
+        <div class="category-card">
+            <h4>⚡ Performance</h4>
+            <p>Cache, pagination, optimisation</p>
+        </div>
+        <div class="category-card">
+            <h4>📊 Logs</h4>
+            <p>Monitoring, niveaux, rotation</p>
+        </div>
+        <div class="category-card">
+            <h4>🔒 Sécurité</h4>
+            <p>XSS, SQL injection, headers</p>
+        </div>
+        <div class="category-card">
+            <h4>🌐 API</h4>
+            <p>REST, JSON, codes HTTP</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="cta-content">
+        <h2>Prêt à améliorer votre code PHP ?</h2>
+        <p>Consultez la documentation complète des règles et commencez à utiliser CSBNorm dès aujourd'hui.</p>
+        <a href="/Rules" class="btn-primary-custom">Voir toutes les règles</a>
+    </div>
+</section>
