@@ -1,0 +1,18 @@
+services:
+  csbnorme-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: csbnorme-website
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:8080
+    restart: unless-stopped
+    networks:
+      - csbnorme-network
+
+networks:
+  csbnorme-network:
+    driver: bridge

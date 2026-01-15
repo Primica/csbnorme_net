@@ -1,0 +1,37 @@
+# Fichiers et dossiers à ignorer lors du build Docker
+
+# Binaires et objets
+bin/
+obj/
+out/
+
+# Dépendances
+node_modules/
+
+# Fichiers de développement
+*.user
+*.suo
+.vs/
+.vscode/
+*.DotSettings.user
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+LICENSE
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose*.yml
