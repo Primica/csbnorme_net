@@ -37,7 +37,7 @@
         <div class="rules-content">
             <!-- Structure MVC -->
             <section id="structure" class="rule-section">
-                <h2>📁 Structure MVC</h2>
+                <h2><span class="section-icon">■</span> Structure MVC</h2>
                 <div class="rule-card">
                     <h4>Structure de dossiers obligatoire</h4>
                     <p>Organisation stricte du projet avec séparation claire des responsabilités.</p>
@@ -63,7 +63,7 @@
 
             <!-- Base de données -->
             <section id="database" class="rule-section">
-                <h2>🗄️ Base de données</h2>
+                <h2><span class="section-icon">■</span> Base de données</h2>
                 <div class="rule-card">
                     <h4>Migrations obligatoires</h4>
                     <p>Toute modification de schéma doit passer par un fichier de migration versionné dans <code>/database/migrations/</code> avec timestamp.</p>
@@ -89,7 +89,7 @@
 
             <!-- Configuration -->
             <section id="config" class="rule-section">
-                <h2>⚙️ Configuration</h2>
+                <h2><span class="section-icon">■</span> Configuration</h2>
                 <div class="rule-card">
                     <h4>Variables d'environnement</h4>
                     <p>Interdiction de credentials en dur. Utilisation obligatoire d'un fichier <code>config.php</code> avec <code>config.example.php</code> versionné.</p>
@@ -110,7 +110,7 @@
 
             <!-- Authentification -->
             <section id="auth" class="rule-section">
-                <h2>🔐 Sessions & Authentification</h2>
+                <h2><span class="section-icon">■</span> Sessions & Authentification</h2>
                 <div class="rule-card">
                     <h4>Régénération de session</h4>
                     <p><code>session_regenerate_id(true)</code> après connexion/changement de privilège.</p>
@@ -135,7 +135,7 @@
 
             <!-- Formulaires -->
             <section id="forms" class="rule-section">
-                <h2>📋 Formulaires</h2>
+                <h2><span class="section-icon">■</span> Formulaires</h2>
                 <div class="rule-card">
                     <h4>Token CSRF</h4>
                     <p>Présence obligatoire sur tous les formulaires POST/PUT/DELETE (implémentation manuelle via session).</p>
@@ -160,7 +160,7 @@
 
             <!-- Templates -->
             <section id="templates" class="rule-section">
-                <h2>🎨 Templates/Vues</h2>
+                <h2><span class="section-icon">■</span> Templates/Vues</h2>
                 <div class="rule-card">
                     <h4>Échappement par défaut</h4>
                     <p>Toute variable affichée doit passer par : <code>escape()</code> définie comme <code>htmlspecialchars($var, ENT_QUOTES, 'UTF-8')</code>.</p>
@@ -185,7 +185,7 @@
 
             <!-- Autoloading -->
             <section id="autoloading" class="rule-section">
-                <h2>📦 Autoloading</h2>
+                <h2><span class="section-icon">■</span> Autoloading</h2>
                 <div class="rule-card">
                     <h4>Autoloader PSR-4</h4>
                     <p>Implémentation personnalisée dans <code>/core/Autoloader.php</code> pour charger automatiquement les classes.</p>
@@ -202,7 +202,7 @@
 
             <!-- Helpers -->
             <section id="helpers" class="rule-section">
-                <h2>🛠️ Helpers et Utilities</h2>
+                <h2><span class="section-icon">■</span> Helpers et Utilities</h2>
                 <div class="rule-card">
                     <h4>Dossier /helpers</h4>
                     <p>Fonctions utilitaires regroupées par thème : <code>security.php</code>, <code>validation.php</code>, <code>string.php</code>, <code>date.php</code>.</p>
@@ -223,7 +223,7 @@
 
             <!-- Git -->
             <section id="git" class="rule-section">
-                <h2>📦 Git et Versioning</h2>
+                <h2><span class="section-icon">■</span> Git et Versioning</h2>
                 <div class="rule-card">
                     <h4>Fichiers exclus</h4>
                     <p><code>.gitignore</code> doit contenir : <code>.env</code>, <code>config.php</code>, <code>/uploads</code>, <code>/cache</code>, <code>/logs</code>, fichiers IDE.</p>
@@ -248,7 +248,7 @@
 
             <!-- Performance -->
             <section id="performance" class="rule-section">
-                <h2>⚡ Performance</h2>
+                <h2><span class="section-icon">■</span> Performance</h2>
                 <div class="rule-card">
                     <h4>Lazy loading</h4>
                     <p>Chargement des relations uniquement quand nécessaire (méthodes séparées dans les modèles).</p>
@@ -273,7 +273,7 @@
 
             <!-- Logs -->
             <section id="logs" class="rule-section">
-                <h2>📊 Logs et Monitoring</h2>
+                <h2><span class="section-icon">■</span> Logs et Monitoring</h2>
                 <div class="rule-card">
                     <h4>Logs manuels</h4>
                     <p>Classe <code>Logger</code> personnalisée écrivant dans <code>/logs/</code> avec rotation quotidienne.</p>
@@ -298,7 +298,7 @@
 
             <!-- Sécurité -->
             <section id="security" class="rule-section">
-                <h2>🔒 Sécurité Renforcée</h2>
+                <h2><span class="section-icon">■</span> Sécurité Renforcée</h2>
                 <div class="rule-card">
                     <h4>Validation des uploads</h4>
                     <p>Vérification du type MIME réel avec <code>finfo_file()</code>, pas seulement l'extension.</p>
@@ -327,7 +327,7 @@
 
             <!-- API -->
             <section id="api" class="rule-section">
-                <h2>🌐 API (si applicable)</h2>
+                <h2><span class="section-icon">■</span> API (si applicable)</h2>
                 <div class="rule-card">
                     <h4>Content-Type</h4>
                     <p>Header correct <code>application/json</code> pour les réponses JSON.</p>
@@ -348,7 +348,7 @@
 
             <!-- Commentaires -->
             <section id="comments" class="rule-section">
-                <h2>📝 Commentaires</h2>
+                <h2><span class="section-icon">■</span> Commentaires</h2>
                 <div class="rule-card">
                     <h4>Commentaires utiles uniquement</h4>
                     <p>Expliquer le "pourquoi", pas le "quoi" (le code doit être auto-explicatif).</p>
@@ -369,7 +369,7 @@
 
             <!-- Accessibilité -->
             <section id="accessibility" class="rule-section">
-                <h2>♿ Accessibilité</h2>
+                <h2><span class="section-icon">■</span> Accessibilité</h2>
                 <div class="rule-card">
                     <h4>Attributs alt</h4>
                     <p>Obligatoires sur toutes les images.</p>
